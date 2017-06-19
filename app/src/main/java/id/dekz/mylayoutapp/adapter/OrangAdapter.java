@@ -26,7 +26,7 @@ public class OrangAdapter extends RecyclerView.Adapter<OrangViewHolder> {
     @Override
     public OrangViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View vh = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_recyclerview, parent);
+                .inflate(R.layout.row_recyclerview, parent, false);
 
         return new OrangViewHolder(vh);
     }

@@ -2,11 +2,19 @@ package id.dekz.mylayoutapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import id.dekz.mylayoutapp.adapter.OrangAdapter;
+import id.dekz.mylayoutapp.pojo.Orang;
 
 /**
  * Created by DEKZ on 6/14/2017.
@@ -14,27 +22,33 @@ import android.widget.Toast;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private ListView listview;
-    private String[] strings;
-    private ArrayAdapter arrayAdapter;
+    private RecyclerView rv;
+    private OrangAdapter adapter;
+    private List<Orang> orangs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        listview = (ListView) findViewById(R.id.listview);
-        strings = new String[]{"Jeruk", "Apel", "Mangga", "Manggis", "Pisang",
-                "Jeruk", "Apel", "Mangga", "Manggis",
-                "Pisang", "Jeruk", "Apel", "Mangga", "Manggis", "Pisang"};
-        arrayAdapter = new ArrayAdapter<String>(this, R.layout.row_listview, strings);
-        listview.setAdapter(arrayAdapter);
+        rv = (RecyclerView) findViewById(R.id.rv);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(DashboardActivity.this, strings[i], Toast.LENGTH_SHORT).show();
-            }
-        });
+        createDataDummy();
+        adapter = new OrangAdapter(orangs);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(adapter);
+    }
+
+    private void createDataDummy(){
+        Orang orang1 = new Orang("Samsul", "Tukang Ojek");
+        Orang orang2 = new Orang("Mukidi", "Project Manager");
+        Orang orang3 = new Orang("Muklis", "Software Developer");
+        Orang orang4 = new Orang("Sumiyati", "Ibu Rumah Tangga");
+        Orang orang5 = new Orang("Yanto", "Tukang Bubur");
+        orangs.add(orang1);
+        orangs.add(orang2);
+        orangs.add(orang3);
+        orangs.add(orang4);
+        orangs.add(orang5);
     }
 }
