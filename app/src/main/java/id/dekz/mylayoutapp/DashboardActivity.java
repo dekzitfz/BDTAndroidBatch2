@@ -27,7 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
         strings = new String[]{"Jeruk", "Apel", "Mangga", "Manggis", "Pisang",
                 "Jeruk", "Apel", "Mangga", "Manggis",
                 "Pisang", "Jeruk", "Apel", "Mangga", "Manggis", "Pisang"};
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strings);
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.row_listview, strings);
         listview.setAdapter(arrayAdapter);
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
