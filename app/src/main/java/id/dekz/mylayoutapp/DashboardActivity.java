@@ -40,7 +40,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void createDataDummy(){
-        Orang orang1 = new Orang("Samsul", "Tukang Ojek", "http://lorempixel.com/200/200/");
+        Orang orang1 = new Orang("Samsul", "Tukang Ojek", "http://img.phone.baidu.com/public/uploads/store_7/c/d/5/cd553747471edd3e5a1e4e7ee9adccd5_200x200.png");
         Orang orang2 = new Orang("Mukidi", "Project Manager", "http://lorempixel.com/200/200/");
         Orang orang3 = new Orang("Muklis", "Software Developer", "http://lorempixel.com/200/200/");
         Orang orang4 = new Orang("Sumiyati", "Ibu Rumah Tangga", "http://lorempixel.com/200/200/");

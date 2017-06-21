@@ -1,6 +1,7 @@
 package id.dekz.mylayoutapp.viewholder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.tapadoo.alerter.Alerter;
 
+import id.dekz.mylayoutapp.DetailActivity;
 import id.dekz.mylayoutapp.R;
 import id.dekz.mylayoutapp.pojo.Orang;
 
@@ -42,10 +44,9 @@ public class OrangViewHolder extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Alerter.create(activity)
-                        .setTitle(data.getNama())
-                        .setText(data.getPekerjaan())
-                        .show();
+                Intent detail = new Intent(itemView.getContext(), DetailActivity.class);
+
+                itemView.getContext().startActivity(detail);
             }
         });
     }
