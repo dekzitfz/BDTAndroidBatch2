@@ -1,11 +1,14 @@
 package id.dekz.mylayoutapp.viewholder;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
+import com.tapadoo.alerter.Alerter;
 
 import id.dekz.mylayoutapp.R;
 import id.dekz.mylayoutapp.pojo.Orang;
@@ -28,11 +31,22 @@ public class OrangViewHolder extends RecyclerView.ViewHolder{
         img = (ImageView) itemView.findViewById(R.id.img);
     }
 
-    public void bind(Orang data){
+    public void bind(final Orang data, final Activity activity){
         nama.setText(data.getNama());
         pekerjaan.setText(data.getPekerjaan());
-        Picasso.with(itemView.getContext())
+
+        Glide.with(itemView.getContext())
                 .load(data.getImageURL())
                 .into(img);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Alerter.create(activity)
+                        .setTitle(data.getNama())
+                        .setText(data.getPekerjaan())
+                        .show();
+            }
+        });
     }
 }

@@ -34,7 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.rv);
 
         createDataDummy();
-        adapter = new OrangAdapter(orangs);
+        adapter = new OrangAdapter(orangs, this);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
     }
