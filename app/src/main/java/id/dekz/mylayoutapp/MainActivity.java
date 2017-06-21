@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.tapadoo.alerter.Alerter;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText username;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
                 startActivity(dashboard);
+                //validate();
             }
         });
     }
@@ -64,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
                 && inputedPassword.equals(validPassword)){
             Toast.makeText(this, "login sukses", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(this, "login gagal", Toast.LENGTH_SHORT).show();
+            Alerter.create(this)
+                    .setTitle("Login Failure")
+                    .setText("Wrong Credentials")
+                    .show();
         }
     }
 }

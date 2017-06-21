@@ -7,10 +7,19 @@ package id.dekz.mylayoutapp.pojo;
 public class Orang {
     private String nama;
     private String pekerjaan;
+    private String imageURL;
 
-    public Orang (String nama, String pekerjaan){
+    public Orang (String nama, String pekerjaan, String imageURL){
         this.nama = nama;
         this.pekerjaan = pekerjaan;
+        this.imageURL = imageURL;
+    }
+
+    public void setImageURL(String imageURL){
+        this.imageURL = imageURL;
+    }
+    public String getImageURL(){
+        return imageURL;
     }
 
     public void setNama(String nama){
