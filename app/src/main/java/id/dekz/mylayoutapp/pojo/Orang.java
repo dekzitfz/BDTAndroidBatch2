@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by DEKZ on 6/19/2017.
  */
 
-public class Orang{
+public class Orang implements Serializable{
     private String nama;
     private String pekerjaan;
     private String imageURL;

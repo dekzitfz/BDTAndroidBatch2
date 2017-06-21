@@ -45,7 +45,7 @@ public class OrangViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 Intent detail = new Intent(itemView.getContext(), DetailActivity.class);
-
+                detail.putExtra("orang", data);
                 itemView.getContext().startActivity(detail);
             }
         });

@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import id.dekz.mylayoutapp.pojo.Orang;
+
 /**
  * Created by DEKZ on 6/21/2017.
  */
@@ -17,9 +19,11 @@ public class DetailActivity extends AppCompatActivity {
     private TextView nama;
     private TextView pekerjaan;
 
-    private String strName;
+    /*private String strName;
     private String strPekerjaan;
-    private String strImage;
+    private String strImage;*/
+
+    private Orang person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +35,11 @@ public class DetailActivity extends AppCompatActivity {
         pekerjaan = (TextView) findViewById(R.id.tv_detail_job);
 
         if(getIntent() != null){
-            strName = getIntent().getStringExtra("nama");
-            strPekerjaan = getIntent().getStringExtra("pekerjaan");
-            strImage = getIntent().getStringExtra("image");
+            person = (Orang) getIntent().getSerializableExtra("orang");
 
-            Glide.with(this).load(strImage).into(img);
-            nama.setText(strName);
-            pekerjaan.setText(strPekerjaan);
+            Glide.with(this).load(person.getImageURL()).into(img);
+            nama.setText(person.getNama());
+            pekerjaan.setText(person.getPekerjaan());
         }
 
     }
