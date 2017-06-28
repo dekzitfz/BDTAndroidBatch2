@@ -6,6 +6,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +47,24 @@ public class DashboardActivity extends AppCompatActivity {
         adapter = new OrangAdapter(orangs, this);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.menu_logout:
+                //do something
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void createDataDummy(){
