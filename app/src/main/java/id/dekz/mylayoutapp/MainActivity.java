@@ -1,6 +1,8 @@
 package id.dekz.mylayoutapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,12 +22,15 @@ public class MainActivity extends AppCompatActivity {
     String validUsername = "adiandrea";
     String validPassword = "qwerty123";
 
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Log.d("lifecycle", "onCreate");
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         username = (EditText) findViewById(R.id.etUsername);
         password = (EditText) findViewById(R.id.etPassword);
@@ -34,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
-                startActivity(dashboard);
-                //validate();
+                validate();
             }
         });
     }
@@ -65,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(inputedUsername.equals(validUsername)
                 && inputedPassword.equals(validPassword)){
-            Toast.makeText(this, "login sukses", Toast.LENGTH_SHORT).show();
+            preferences.edit().putBoolean("isLoggedIn", true).apply();
+            Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
+            startActivity(dashboard);
+            /*Toast.makeText(this, "login sukses", Toast.LENGTH_SHORT).show();*/
         }else{
             Alerter.create(this)
                     .setTitle("Login Failure")
