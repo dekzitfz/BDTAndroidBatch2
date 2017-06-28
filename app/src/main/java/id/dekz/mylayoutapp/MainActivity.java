@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.tapadoo.alerter.Alerter;
 
+import id.dekz.mylayoutapp.utilities.PrefManager;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText username;
@@ -22,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     String validUsername = "adiandrea";
     String validPassword = "qwerty123";
 
-    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Log.d("lifecycle", "onCreate");
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         username = (EditText) findViewById(R.id.etUsername);
         password = (EditText) findViewById(R.id.etPassword);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(preferences.getBoolean("isLoggedIn", false)){
+        if(new PrefManager().getBool(this, "isLoggedIn")){
             Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
             startActivity(dashboard);
             MainActivity.this.finish();
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(inputedUsername.equals(validUsername)
                 && inputedPassword.equals(validPassword)){
-            preferences.edit().putBoolean("isLoggedIn", true).apply();
-            preferences.edit().putString("username", inputedUsername).apply();
+            new PrefManager().saveBool(this, "isLoggedIn", true);
+            new PrefManager().saveString(this, "username", inputedUsername);
             Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
             startActivity(dashboard);
             MainActivity.this.finish();
