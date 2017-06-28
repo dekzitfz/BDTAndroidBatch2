@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
                 validate();
             }
         });
+
+        if(preferences.getBoolean("isLoggedIn", false)){
+            Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
+            startActivity(dashboard);
+            MainActivity.this.finish();
+        }
     }
 
     @Override
@@ -71,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             preferences.edit().putBoolean("isLoggedIn", true).apply();
             Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
             startActivity(dashboard);
+            MainActivity.this.finish();
             /*Toast.makeText(this, "login sukses", Toast.LENGTH_SHORT).show();*/
         }else{
             Alerter.create(this)
