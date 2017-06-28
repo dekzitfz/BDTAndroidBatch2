@@ -1,6 +1,8 @@
 package id.dekz.mylayoutapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,10 +28,16 @@ public class DashboardActivity extends AppCompatActivity {
     private OrangAdapter adapter;
     private List<Orang> orangs = new ArrayList<>();
 
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String username = preferences.getString("username", "");
+        getSupportActionBar().setSubtitle(username);
 
         rv = (RecyclerView) findViewById(R.id.rv);
 

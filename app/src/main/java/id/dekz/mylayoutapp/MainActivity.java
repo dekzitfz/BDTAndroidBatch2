@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         if(inputedUsername.equals(validUsername)
                 && inputedPassword.equals(validPassword)){
             preferences.edit().putBoolean("isLoggedIn", true).apply();
+            preferences.edit().putString("username", inputedUsername).apply();
             Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
             startActivity(dashboard);
             MainActivity.this.finish();
