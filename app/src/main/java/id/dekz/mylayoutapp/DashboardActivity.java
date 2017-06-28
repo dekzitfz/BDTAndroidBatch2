@@ -1,5 +1,6 @@
 package id.dekz.mylayoutapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import id.dekz.mylayoutapp.adapter.OrangAdapter;
 import id.dekz.mylayoutapp.pojo.Orang;
+import id.dekz.mylayoutapp.utilities.PrefManager;
 
 /**
  * Created by DEKZ on 6/14/2017.
@@ -60,7 +62,7 @@ public class DashboardActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.menu_logout:
-                //do something
+                logout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -78,5 +80,11 @@ public class DashboardActivity extends AppCompatActivity {
         orangs.add(orang3);
         orangs.add(orang4);
         orangs.add(orang5);
+    }
+
+    private void logout(){
+        new PrefManager().saveBool(this, "isLoggedIn", false);
+        startActivity(new Intent(this, MainActivity.class));
+        DashboardActivity.this.finish();
     }
 }
