@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
     private List<Orang> orangs = new ArrayList<>();
 
     private SharedPreferences preferences;
-    private List<User> users;
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,19 @@ public class DashboardActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.i("response", response);
+                        try {
+                            User[] users = gson.fromJson(response, User[].class);
 
+                            for(User u : users){
+                                Log.i("user", u.getLogin());
+                            }
+
+                            /*for(int i=0; i<listUser.getUsers().size(); i++){
+                                Log.i("user", listUser.getUsers().get(i).getLogin());
+                            }*/
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
