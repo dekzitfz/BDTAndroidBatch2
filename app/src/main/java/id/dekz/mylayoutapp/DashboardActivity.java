@@ -28,6 +28,7 @@ import java.util.List;
 
 import id.dekz.mylayoutapp.adapter.OrangAdapter;
 import id.dekz.mylayoutapp.pojo.Orang;
+import id.dekz.mylayoutapp.pojo.User;
 import id.dekz.mylayoutapp.utilities.PrefManager;
 
 /**
@@ -41,6 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
     private List<Orang> orangs = new ArrayList<>();
 
     private SharedPreferences preferences;
+    private List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,7 @@ public class DashboardActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.i("response", response);
+
                     }
                 },
                 new Response.ErrorListener() {
