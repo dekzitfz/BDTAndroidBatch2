@@ -57,9 +57,7 @@ public class DashboardActivity extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.rv);
 
         createDataDummy();
-        adapter = new OrangAdapter(orangs, this);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(adapter);
+
         loadDataUserGithub();
     }
 
@@ -96,13 +94,9 @@ public class DashboardActivity extends AppCompatActivity {
                         try {
                             User[] users = gson.fromJson(response, User[].class);
 
-                            for(User u : users){
-                                Log.i("user", u.getLogin());
-                            }
-
-                            /*for(int i=0; i<listUser.getUsers().size(); i++){
-                                Log.i("user", listUser.getUsers().get(i).getLogin());
-                            }*/
+                            adapter = new OrangAdapter(users, DashboardActivity.this);
+                            rv.setLayoutManager(new LinearLayoutManager(DashboardActivity.this));
+                            rv.setAdapter(adapter);
                         }catch (Exception e){
                             e.printStackTrace();
                         }

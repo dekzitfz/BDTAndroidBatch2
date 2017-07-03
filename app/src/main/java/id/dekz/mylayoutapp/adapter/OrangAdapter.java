@@ -10,6 +10,7 @@ import java.util.List;
 
 import id.dekz.mylayoutapp.R;
 import id.dekz.mylayoutapp.pojo.Orang;
+import id.dekz.mylayoutapp.pojo.User;
 import id.dekz.mylayoutapp.viewholder.OrangViewHolder;
 
 /**
@@ -18,11 +19,11 @@ import id.dekz.mylayoutapp.viewholder.OrangViewHolder;
 
 public class OrangAdapter extends RecyclerView.Adapter<OrangViewHolder> {
 
-    private List<Orang> list;
+    private User[] users;
     private Activity activity;
 
-    public OrangAdapter (List<Orang> list, Activity activity){
-        this.list = list;
+    public OrangAdapter (User[] users, Activity activity){
+        this.users = users;
         this.activity = activity;
     }
 
@@ -36,11 +37,11 @@ public class OrangAdapter extends RecyclerView.Adapter<OrangViewHolder> {
 
     @Override
     public void onBindViewHolder(OrangViewHolder holder, int position) {
-        holder.bind(list.get(position), activity);
+        holder.bind(users[position], activity);
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return users.length;
     }
 }
